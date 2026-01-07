@@ -6,14 +6,19 @@ import { QuickActions } from "@/components/dashboard/QuickActions";
 import { TeamPulse } from "@/components/dashboard/TeamPulse";
 import { AIInsights } from "@/components/dashboard/AIInsights";
 import { ConditionsWidget } from "@/components/dashboard/ConditionsWidget";
+import { CoffeeWidget } from "@/components/dashboard/CoffeeWidget";
+import { BackgroundWaves } from "@/components/dashboard/BackgroundWaves";
 import { PenLine, Send, ScanLine, Users } from "lucide-react";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      {/* Animated background */}
+      <BackgroundWaves />
+      
       <Sidebar />
       
-      <div className="pl-60 transition-all duration-300">
+      <div className="pl-60 transition-all duration-300 relative z-10">
         <Header />
         
         <main className="p-10 max-w-6xl">
@@ -59,13 +64,14 @@ const Index = () => {
             <div className="lg:col-span-3 space-y-6">
               <TaskList />
               <QuickActions />
+              <TeamPulse />
             </div>
             
-            {/* Right - Secondary content */}
+            {/* Right - Personal & lifestyle */}
             <div className="lg:col-span-2 space-y-6">
               <ConditionsWidget />
+              <CoffeeWidget />
               <AIInsights />
-              <TeamPulse />
             </div>
           </div>
         </main>

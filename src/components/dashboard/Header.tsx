@@ -16,6 +16,14 @@ export function Header() {
     day: 'numeric'
   });
 
+  // Personal touch - motivational based on time
+  const getMotivation = () => {
+    if (hour < 10) return "Early bird catches the wave 🌊";
+    if (hour < 14) return "Flow state activated ✨";
+    if (hour < 18) return "Making work flow 🚀";
+    return "Wrapping up strong 💪";
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="flex items-center justify-between px-10 py-6">
@@ -24,7 +32,10 @@ export function Header() {
           <h1 className="text-2xl font-display font-bold text-foreground">
             {getGreeting()}, Ali
           </h1>
-          <p className="text-sm text-muted-foreground mt-1">{formattedDate}</p>
+          <div className="flex items-center gap-3 mt-1">
+            <p className="text-sm text-muted-foreground">{formattedDate}</p>
+            <span className="text-sm text-ocean">{getMotivation()}</span>
+          </div>
         </div>
         
         {/* Actions */}
