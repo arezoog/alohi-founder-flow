@@ -13,6 +13,7 @@ import { ScenicWidget } from "@/components/dashboard/ScenicWidget";
 import { HealthWidget } from "@/components/dashboard/HealthWidget";
 import { CalendarWidget } from "@/components/dashboard/CalendarWidget";
 import { TogetherWidget } from "@/components/dashboard/TogetherWidget";
+import { FamilyCallsWidget } from "@/components/dashboard/FamilyCallsWidget";
 import { PenLine, Send, ScanLine, Users } from "lucide-react";
 
 const Index = () => {
@@ -84,9 +85,10 @@ const Index = () => {
             <div className="md:col-span-1 lg:col-span-5 space-y-4 sm:space-y-6">
               <TaskList />
               <QuickActions />
-              {/* Mobile: Show Together widget here */}
-              <div className="lg:hidden">
+              {/* Mobile: Show Together & Family widgets here */}
+              <div className="lg:hidden space-y-4">
                 <TogetherWidget />
+                <FamilyCallsWidget />
               </div>
             </div>
             
@@ -103,6 +105,7 @@ const Index = () => {
             {/* Personal - Desktop only column */}
             <div className="hidden lg:block lg:col-span-3 space-y-6">
               <TogetherWidget />
+              <FamilyCallsWidget />
               <HealthWidget />
               <ConditionsWidget />
               <CoffeeWidget />
