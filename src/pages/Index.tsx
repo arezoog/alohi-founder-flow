@@ -82,8 +82,8 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Main Grid - 3 columns spread out */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/* Main Grid - 2 columns for main content */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-6">
             {/* Column 1: Tasks & Quick Actions */}
             <div className="space-y-4 sm:space-y-6">
               <TaskList />
@@ -95,14 +95,14 @@ const Index = () => {
               <CalendarWidget />
               <TeamPulse />
             </div>
-            
-            {/* Column 3: Personal */}
-            <div className="space-y-4 sm:space-y-6">
-              <TogetherWidget />
-              <FamilyCallsWidget />
-              <ConditionsWidget />
-              <CoffeeWidget />
-            </div>
+          </div>
+
+          {/* Personal Row - 4 widgets side by side */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <TogetherWidget />
+            <FamilyCallsWidget />
+            <ConditionsWidget />
+            <CoffeeWidget />
           </div>
         </main>
       </div>
