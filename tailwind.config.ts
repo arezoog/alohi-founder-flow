@@ -61,17 +61,18 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        // Alohi product colors
+        // Nature-inspired product colors
         sign: "hsl(var(--sign-plus))",
         fax: "hsl(var(--fax-plus))",
         scan: "hsl(var(--scan-plus))",
-        // Lifestyle colors
+        // Ocean & mountain
         ocean: "hsl(var(--ocean))",
+        "ocean-light": "hsl(var(--ocean-light))",
         alpine: "hsl(var(--alpine))",
         snow: "hsl(var(--snow))",
-        coffee: "hsl(var(--coffee))",
-        sunset: "hsl(var(--sunset))",
-        // Status colors
+        powder: "hsl(var(--powder))",
+        wave: "hsl(var(--wave))",
+        // Status
         success: "hsl(var(--status-success))",
         warning: "hsl(var(--status-warning))",
         info: "hsl(var(--status-info))",
@@ -93,24 +94,14 @@ export default {
           to: { height: "0" },
         },
         "fade-in": {
-          from: { opacity: "0", transform: "translateY(12px)" },
+          from: { opacity: "0", transform: "translateY(8px)" },
           to: { opacity: "1", transform: "translateY(0)" },
-        },
-        "slide-in-right": {
-          from: { opacity: "0", transform: "translateX(10px)" },
-          to: { opacity: "1", transform: "translateX(0)" },
-        },
-        "scale-in": {
-          from: { opacity: "0", transform: "scale(0.95)" },
-          to: { opacity: "1", transform: "scale(1)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "fade-in": "fade-in 0.4s ease-out",
-        "slide-in-right": "slide-in-right 0.3s ease-out",
-        "scale-in": "scale-in 0.3s ease-out",
+        "fade-in": "fade-in 0.5s ease-out",
       },
       boxShadow: {
         'card': 'var(--shadow-card)',
