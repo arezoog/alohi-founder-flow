@@ -33,6 +33,11 @@ const Index = () => {
         <Header onMenuClick={() => setMobileMenuOpen(true)} />
         
         <main className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+          {/* Health First - Top Priority */}
+          <div className="mb-6">
+            <HealthWidget />
+          </div>
+
           {/* Top row: Metrics + Scenic */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 mb-6">
             {/* Metrics */}
@@ -77,40 +82,24 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Main Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6">
-            {/* Tasks & Quick Actions */}
-            <div className="md:col-span-1 lg:col-span-5 space-y-4 sm:space-y-6">
+          {/* Main Grid - 3 columns spread out */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            {/* Column 1: Tasks & Quick Actions */}
+            <div className="space-y-4 sm:space-y-6">
               <TaskList />
               <QuickActions />
-              {/* Mobile: Show Together & Family widgets here */}
-              <div className="lg:hidden space-y-4">
-                <TogetherWidget />
-                <FamilyCallsWidget />
-              </div>
             </div>
             
-            {/* Calendar & Team */}
-            <div className="md:col-span-1 lg:col-span-4 space-y-4 sm:space-y-6">
+            {/* Column 2: Calendar & Team */}
+            <div className="space-y-4 sm:space-y-6">
               <CalendarWidget />
               <TeamPulse />
-              {/* Mobile: Show Health here */}
-              <div className="lg:hidden">
-                <HealthWidget />
-              </div>
             </div>
             
-            {/* Personal - Desktop only column */}
-            <div className="hidden lg:block lg:col-span-3 space-y-6">
+            {/* Column 3: Personal */}
+            <div className="space-y-4 sm:space-y-6">
               <TogetherWidget />
               <FamilyCallsWidget />
-              <HealthWidget />
-              <ConditionsWidget />
-              <CoffeeWidget />
-            </div>
-            
-            {/* Mobile: Conditions & Coffee */}
-            <div className="md:col-span-2 lg:hidden grid grid-cols-1 sm:grid-cols-2 gap-4">
               <ConditionsWidget />
               <CoffeeWidget />
             </div>
