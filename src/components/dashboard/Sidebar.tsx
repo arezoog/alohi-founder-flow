@@ -14,16 +14,16 @@ import {
   X
 } from "lucide-react";
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 interface NavItem {
   icon: React.ElementType;
   label: string;
   href: string;
-  active?: boolean;
 }
 
 const mainNav: NavItem[] = [
-  { icon: LayoutDashboard, label: "Dashboard", href: "/", active: true },
+  { icon: LayoutDashboard, label: "Dashboard", href: "/" },
   { icon: PenLine, label: "Sign.Plus", href: "/sign" },
   { icon: Send, label: "Fax.Plus", href: "/fax" },
   { icon: ScanLine, label: "Scan.Plus", href: "/scan" },
@@ -43,6 +43,7 @@ interface SidebarProps {
 
 export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
   const [collapsed, setCollapsed] = useState(false);
+  const location = useLocation();
 
   return (
     <>
@@ -107,23 +108,26 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
               </p>
             )}
             <div className="space-y-1">
-              {mainNav.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={onMobileClose}
-                  className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200",
-                    item.active
-                      ? "bg-primary text-primary-foreground shadow-md"
-                      : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground",
-                    collapsed && !mobileOpen && "lg:justify-center lg:px-2"
-                  )}
-                >
-                  <item.icon className="h-[18px] w-[18px] flex-shrink-0" />
-                  {(!collapsed || mobileOpen) && <span className="text-sm font-medium">{item.label}</span>}
-                </a>
-              ))}
+              {mainNav.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    onClick={onMobileClose}
+                    className={cn(
+                      "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200",
+                      isActive
+                        ? "bg-primary text-primary-foreground shadow-md"
+                        : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground",
+                      collapsed && !mobileOpen && "lg:justify-center lg:px-2"
+                    )}
+                  >
+                    <item.icon className="h-[18px] w-[18px] flex-shrink-0" />
+                    {(!collapsed || mobileOpen) && <span className="text-sm font-medium">{item.label}</span>}
+                  </Link>
+                );
+              })}
             </div>
           </div>
 
@@ -134,21 +138,26 @@ export function Sidebar({ mobileOpen, onMobileClose }: SidebarProps) {
               </p>
             )}
             <div className="space-y-1">
-              {secondaryNav.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={onMobileClose}
-                  className={cn(
-                    "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200",
-                    "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground",
-                    collapsed && !mobileOpen && "lg:justify-center lg:px-2"
-                  )}
-                >
-                  <item.icon className="h-[18px] w-[18px] flex-shrink-0" />
-                  {(!collapsed || mobileOpen) && <span className="text-sm font-medium">{item.label}</span>}
-                </a>
-              ))}
+              {secondaryNav.map((item) => {
+                const isActive = location.pathname === item.href;
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    onClick={onMobileClose}
+                    className={cn(
+                      "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200",
+                      isActive
+                        ? "bg-primary text-primary-foreground shadow-md"
+                        : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-foreground",
+                      collapsed && !mobileOpen && "lg:justify-center lg:px-2"
+                    )}
+                  >
+                    <item.icon className="h-[18px] w-[18px] flex-shrink-0" />
+                    {(!collapsed || mobileOpen) && <span className="text-sm font-medium">{item.label}</span>}
+                  </Link>
+                );
+              })}
             </div>
           </div>
         </nav>
