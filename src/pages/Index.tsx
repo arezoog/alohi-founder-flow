@@ -8,6 +8,7 @@ import { AIInsights } from "@/components/dashboard/AIInsights";
 import { ConditionsWidget } from "@/components/dashboard/ConditionsWidget";
 import { CoffeeWidget } from "@/components/dashboard/CoffeeWidget";
 import { BackgroundWaves } from "@/components/dashboard/BackgroundWaves";
+import { AIChat } from "@/components/dashboard/AIChat";
 import { PenLine, Send, ScanLine, Users } from "lucide-react";
 
 const Index = () => {
@@ -76,6 +77,9 @@ const Index = () => {
           </div>
         </main>
       </div>
+      
+      {/* Floating AI Chat */}
+      <AIChat />
     </div>
   );
 };

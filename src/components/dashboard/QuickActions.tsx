@@ -3,8 +3,7 @@ import {
   PenLine, 
   Send, 
   ScanLine, 
-  Users, 
-  ArrowRight
+  Users
 } from "lucide-react";
 
 interface QuickAction {
@@ -13,6 +12,7 @@ interface QuickAction {
   description: string;
   icon: React.ElementType;
   color: string;
+  bgColor: string;
 }
 
 const actions: QuickAction[] = [
@@ -21,28 +21,32 @@ const actions: QuickAction[] = [
     label: "New Agreement",
     description: "Sign.Plus",
     icon: PenLine,
-    color: "bg-sign/10 text-sign hover:bg-sign/20",
+    color: "text-sign",
+    bgColor: "bg-sign/5 hover:bg-sign/10 border-sign/10",
   },
   {
     id: "fax",
     label: "Send Fax",
     description: "Fax.Plus",
     icon: Send,
-    color: "bg-fax/10 text-fax hover:bg-fax/20",
+    color: "text-fax",
+    bgColor: "bg-fax/5 hover:bg-fax/10 border-fax/10",
   },
   {
     id: "scan",
     label: "Scan Doc",
     description: "Scan.Plus",
     icon: ScanLine,
-    color: "bg-scan/10 text-scan hover:bg-scan/20",
+    color: "text-scan",
+    bgColor: "bg-scan/5 hover:bg-scan/10 border-scan/10",
   },
   {
     id: "team",
     label: "Team",
     description: "37 members",
     icon: Users,
-    color: "bg-ocean/10 text-ocean hover:bg-ocean/20",
+    color: "text-ocean",
+    bgColor: "bg-ocean/5 hover:bg-ocean/10 border-ocean/10",
   },
 ];
 
@@ -60,14 +64,14 @@ export function QuickActions() {
           <button
             key={action.id}
             className={cn(
-              "group flex items-center gap-3 p-4 rounded-xl transition-all duration-200",
-              action.color
+              "group flex items-center gap-3 p-4 rounded-xl border transition-all duration-200 hover:shadow-sm",
+              action.bgColor
             )}
           >
-            <action.icon className="h-5 w-5 flex-shrink-0" />
+            <action.icon className={cn("h-5 w-5 flex-shrink-0", action.color)} />
             <div className="text-left flex-1">
               <p className="font-medium text-foreground text-sm">{action.label}</p>
-              <p className="text-xs opacity-70">{action.description}</p>
+              <p className={cn("text-xs", action.color)}>{action.description}</p>
             </div>
           </button>
         ))}
