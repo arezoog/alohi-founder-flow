@@ -1,31 +1,31 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { MapPin, ChevronLeft, ChevronRight, Heart } from "lucide-react";
-import scenicAlps from "@/assets/scenic-alps.jpg";
-import scenicOcean from "@/assets/scenic-ocean.jpg";
+import snowboardAction from "@/assets/snowboard-action.jpg";
+import surfAction from "@/assets/surf-action.jpg";
 
 interface ScenicView {
   id: string;
   location: string;
   country: string;
   image: string;
-  type: "mountain" | "ocean";
+  type: "snowboard" | "surf";
 }
 
 const views: ScenicView[] = [
   {
     id: "1",
-    location: "Zermatt",
-    country: "Switzerland",
-    image: scenicAlps,
-    type: "mountain",
+    location: "Powder Day",
+    country: "Backcountry",
+    image: snowboardAction,
+    type: "snowboard",
   },
   {
     id: "2",
-    location: "Uluwatu",
-    country: "Bali",
-    image: scenicOcean,
-    type: "ocean",
+    location: "Barrel Wave",
+    country: "Pipeline",
+    image: surfAction,
+    type: "surf",
   },
 ];
 
