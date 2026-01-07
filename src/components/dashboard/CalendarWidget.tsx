@@ -1,10 +1,15 @@
 import { cn } from "@/lib/utils";
 import { Calendar, Video, Users, MapPin, RefreshCw } from "lucide-react";
+import { format } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
+
+const GENEVA_TIMEZONE = "Europe/Zurich";
 
 interface CalendarEvent {
   id: string;
   title: string;
-  time: string;
+  hour: number;
+  minute: number;
   duration: string;
   type: "video" | "in-person" | "focus";
   attendees?: number;
@@ -14,7 +19,8 @@ const events: CalendarEvent[] = [
   {
     id: "1",
     title: "Leadership Sync",
-    time: "10:00",
+    hour: 10,
+    minute: 0,
     duration: "30m",
     type: "video",
     attendees: 5,
@@ -22,14 +28,16 @@ const events: CalendarEvent[] = [
   {
     id: "2",
     title: "Deep Work Block",
-    time: "11:00",
+    hour: 11,
+    minute: 0,
     duration: "2h",
     type: "focus",
   },
   {
     id: "3",
     title: "Enterprise Sales",
-    time: "14:00",
+    hour: 14,
+    minute: 0,
     duration: "1h",
     type: "video",
     attendees: 8,
@@ -37,7 +45,8 @@ const events: CalendarEvent[] = [
   {
     id: "4",
     title: "Product Review",
-    time: "16:00",
+    hour: 16,
+    minute: 0,
     duration: "45m",
     type: "in-person",
     attendees: 4,
@@ -59,7 +68,17 @@ const getEventStyle = (type: string) => {
 
 export function CalendarWidget() {
   const now = new Date();
-  const currentHour = now.getHours();
+  const genevaTime = toZonedTime(now, GENEVA_TIMEZONE);
+  const currentHour = genevaTime.getHours();
+  const currentMinute = genevaTime.getMinutes();
+  
+  const formattedDate = format(genevaTime, "EEEE, MMM d");
+  
+  const formatEventTime = (hour: number, minute: number) => {
+    const date = new Date();
+    date.setHours(hour, minute, 0, 0);
+    return format(date, "HH:mm");
+  };
   
   return (
     <div className="rounded-2xl bg-card border border-border shadow-card">
@@ -79,7 +98,7 @@ export function CalendarWidget() {
           </button>
         </div>
         <p className="text-sm text-muted-foreground mt-1">
-          {now.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}
+          {formattedDate} · Geneva
         </p>
       </div>
       
@@ -87,9 +106,8 @@ export function CalendarWidget() {
         {events.map((event) => {
           const style = getEventStyle(event.type);
           const Icon = style.icon;
-          const eventHour = parseInt(event.time.split(':')[0]);
-          const isPast = eventHour < currentHour;
-          const isCurrent = eventHour === currentHour;
+          const isPast = event.hour < currentHour || (event.hour === currentHour && event.minute < currentMinute);
+          const isCurrent = event.hour === currentHour;
           
           return (
             <div
@@ -103,7 +121,7 @@ export function CalendarWidget() {
             >
               <div className="flex-shrink-0 w-12 text-right">
                 <p className={cn("text-sm font-medium", isCurrent ? "text-ocean" : "text-foreground")}>
-                  {event.time}
+                  {formatEventTime(event.hour, event.minute)}
                 </p>
                 <p className="text-xs text-muted-foreground">{event.duration}</p>
               </div>

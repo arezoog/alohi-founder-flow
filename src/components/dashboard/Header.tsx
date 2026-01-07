@@ -1,8 +1,13 @@
 import { Bell, Search, Settings } from "lucide-react";
+import { format } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
+
+const GENEVA_TIMEZONE = "Europe/Zurich";
 
 export function Header() {
-  const currentTime = new Date();
-  const hour = currentTime.getHours();
+  const now = new Date();
+  const genevaTime = toZonedTime(now, GENEVA_TIMEZONE);
+  const hour = genevaTime.getHours();
   
   const getGreeting = () => {
     if (hour < 12) return "Good morning";
@@ -10,11 +15,8 @@ export function Header() {
     return "Good evening";
   };
   
-  const formattedDate = currentTime.toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'short',
-    day: 'numeric'
-  });
+  const formattedDate = format(genevaTime, "EEEE, MMM d");
+  const formattedTime = format(genevaTime, "h:mm a");
 
   // Personal touch - motivational based on time
   const getMotivation = () => {
@@ -33,7 +35,7 @@ export function Header() {
             {getGreeting()}, Ali
           </h1>
           <div className="flex items-center gap-3 mt-1">
-            <p className="text-sm text-muted-foreground">{formattedDate}</p>
+            <p className="text-sm text-muted-foreground">{formattedDate} · {formattedTime} Geneva</p>
             <span className="text-sm text-ocean">{getMotivation()}</span>
           </div>
         </div>
