@@ -1,10 +1,15 @@
 import { Bell, Search, Settings } from "lucide-react";
 import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
+import { MobileMenuButton } from "./Sidebar";
 
 const GENEVA_TIMEZONE = "Europe/Zurich";
 
-export function Header() {
+interface HeaderProps {
+  onMenuClick?: () => void;
+}
+
+export function Header({ onMenuClick }: HeaderProps) {
   const now = new Date();
   const genevaTime = toZonedTime(now, GENEVA_TIMEZONE);
   const hour = genevaTime.getHours();
@@ -18,7 +23,6 @@ export function Header() {
   const formattedDate = format(genevaTime, "EEEE, MMM d");
   const formattedTime = format(genevaTime, "h:mm a");
 
-  // Personal touch - motivational based on time
   const getMotivation = () => {
     if (hour < 10) return "Early bird catches the wave 🌊";
     if (hour < 14) return "Flow state activated ✨";
@@ -28,38 +32,42 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
-      <div className="flex items-center justify-between px-10 py-6">
-        {/* Greeting */}
-        <div>
-          <h1 className="text-2xl font-display font-bold text-foreground">
-            {getGreeting()}, Ali
-          </h1>
-          <div className="flex items-center gap-3 mt-1">
-            <p className="text-sm text-muted-foreground">{formattedDate} · {formattedTime} Geneva</p>
-            <span className="text-sm text-ocean">{getMotivation()}</span>
+      <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4 lg:py-6">
+        {/* Left side */}
+        <div className="flex items-center gap-3">
+          <MobileMenuButton onClick={onMenuClick || (() => {})} />
+          <div>
+            <h1 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground">
+              {getGreeting()}, Ali
+            </h1>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 mt-0.5 lg:mt-1">
+              <p className="text-xs sm:text-sm text-muted-foreground">{formattedDate} · {formattedTime}</p>
+              <span className="hidden sm:inline text-xs sm:text-sm text-ocean">{getMotivation()}</span>
+            </div>
           </div>
         </div>
         
         {/* Actions */}
-        <div className="flex items-center gap-2">
-          <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-muted/50 hover:bg-muted transition-colors text-muted-foreground text-sm">
+        <div className="flex items-center gap-1 sm:gap-2">
+          <button className="hidden sm:flex items-center gap-2 px-3 lg:px-4 py-2 rounded-xl bg-muted/50 hover:bg-muted transition-colors text-muted-foreground text-sm">
             <Search className="h-4 w-4" />
-            <span className="hidden md:inline">Search...</span>
-            <kbd className="hidden md:inline-flex h-5 px-1.5 rounded border border-border bg-card text-[10px] font-mono text-muted-foreground items-center">
-              ⌘K
-            </kbd>
+            <span className="hidden lg:inline">Search...</span>
           </button>
           
-          <button className="relative p-2.5 rounded-xl hover:bg-muted transition-colors">
+          <button className="sm:hidden p-2 rounded-xl hover:bg-muted transition-colors">
+            <Search className="h-5 w-5 text-muted-foreground" />
+          </button>
+          
+          <button className="relative p-2 sm:p-2.5 rounded-xl hover:bg-muted transition-colors">
             <Bell className="h-5 w-5 text-muted-foreground" />
-            <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-ocean" />
+            <span className="absolute top-1.5 sm:top-2 right-1.5 sm:right-2 h-2 w-2 rounded-full bg-ocean" />
           </button>
           
-          <button className="p-2.5 rounded-xl hover:bg-muted transition-colors">
+          <button className="hidden sm:block p-2.5 rounded-xl hover:bg-muted transition-colors">
             <Settings className="h-5 w-5 text-muted-foreground" />
           </button>
           
-          <div className="ml-2 h-9 w-9 rounded-full bg-gradient-to-br from-ocean to-primary flex items-center justify-center text-white font-display font-semibold text-sm">
+          <div className="ml-1 sm:ml-2 h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-gradient-to-br from-ocean to-primary flex items-center justify-center text-white font-display font-semibold text-xs sm:text-sm">
             AG
           </div>
         </div>
