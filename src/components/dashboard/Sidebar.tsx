@@ -10,7 +10,9 @@ import {
   HelpCircle,
   LogOut,
   ChevronLeft,
-  Sparkles
+  Sparkles,
+  Mountain,
+  Waves
 } from "lucide-react";
 import { useState } from "react";
 
@@ -49,13 +51,18 @@ export function Sidebar() {
       {/* Logo */}
       <div className="flex items-center justify-between p-4 border-b border-sidebar-border">
         <div className={cn("flex items-center gap-3", collapsed && "justify-center w-full")}>
-          <div className="h-10 w-10 rounded-xl bg-sidebar-primary flex items-center justify-center text-sidebar-primary-foreground font-display font-bold text-lg">
+          <div className="relative h-10 w-10 rounded-xl bg-gradient-to-br from-ocean via-primary to-alpine flex items-center justify-center text-white font-display font-bold text-lg overflow-hidden">
             A
+            {/* Decorative wave */}
+            <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-t from-white/20 to-transparent animate-wave" />
           </div>
           {!collapsed && (
             <div>
               <h1 className="font-display font-bold text-lg text-sidebar-foreground">Alohi</h1>
-              <p className="text-xs text-sidebar-foreground/60">Command Center</p>
+              <p className="text-xs text-sidebar-foreground/50 flex items-center gap-1">
+                <span>Command Center</span>
+                <Waves className="h-3 w-3 animate-wave" />
+              </p>
             </div>
           )}
         </div>
@@ -85,7 +92,7 @@ export function Sidebar() {
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200",
                 item.active
-                  ? "bg-sidebar-primary text-sidebar-primary-foreground shadow-lg"
+                  ? "bg-gradient-to-r from-sidebar-primary to-sunset text-sidebar-primary-foreground shadow-lg shadow-sidebar-primary/20"
                   : "text-sidebar-foreground/70 hover:bg-sidebar-accent hover:text-sidebar-foreground",
                 collapsed && "justify-center"
               )}
@@ -97,7 +104,7 @@ export function Sidebar() {
                   {item.badge && (
                     <span className={cn(
                       "px-2 py-0.5 rounded-full text-xs font-medium",
-                      item.active ? "bg-sidebar-primary-foreground/20" : "bg-sidebar-accent text-sidebar-accent-foreground"
+                      item.active ? "bg-white/20" : "bg-sidebar-accent text-sidebar-accent-foreground"
                     )}>
                       {item.badge}
                     </span>
@@ -130,6 +137,17 @@ export function Sidebar() {
           ))}
         </div>
       </nav>
+
+      {/* Weekend indicator */}
+      {!collapsed && (
+        <div className="mx-3 mb-3 p-4 rounded-xl bg-gradient-to-br from-ocean/20 to-alpine/20 border border-ocean/20">
+          <div className="flex items-center gap-2 mb-2">
+            <Mountain className="h-4 w-4 text-alpine" />
+            <span className="text-xs font-medium text-sidebar-foreground/80">Weekend Forecast</span>
+          </div>
+          <p className="text-xs text-sidebar-foreground/60">Fresh powder in Verbier ⛷️</p>
+        </div>
+      )}
 
       {/* Footer */}
       <div className="p-3 border-t border-sidebar-border space-y-1">
