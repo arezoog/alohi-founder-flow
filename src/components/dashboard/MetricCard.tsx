@@ -8,6 +8,7 @@ interface MetricCardProps {
   changeType?: "positive" | "negative" | "neutral";
   icon: LucideIcon;
   iconColor?: string;
+  gradient?: string;
   className?: string;
 }
 
@@ -18,19 +19,26 @@ export function MetricCard({
   changeType = "neutral",
   icon: Icon,
   iconColor = "text-accent",
+  gradient,
   className,
 }: MetricCardProps) {
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-xl bg-card p-6 shadow-card transition-all duration-300 hover:shadow-elevated hover:-translate-y-0.5",
+        "group relative overflow-hidden rounded-2xl bg-card p-6 shadow-card transition-all duration-300 hover:shadow-elevated hover:-translate-y-1",
         className
       )}
     >
-      <div className="flex items-start justify-between">
+      {/* Subtle gradient overlay */}
+      <div className={cn(
+        "absolute inset-0 opacity-50 transition-opacity duration-300 group-hover:opacity-70",
+        gradient || "bg-gradient-to-br from-transparent to-muted/30"
+      )} />
+      
+      <div className="relative flex items-start justify-between">
         <div className="space-y-3">
           <p className="text-sm font-medium text-muted-foreground">{title}</p>
-          <p className="text-3xl font-display font-bold tracking-tight text-foreground animate-number-count">
+          <p className="text-3xl font-display font-bold tracking-tight text-foreground">
             {value}
           </p>
           {change && (
@@ -50,19 +58,20 @@ export function MetricCard({
         </div>
         <div
           className={cn(
-            "rounded-xl p-3 transition-transform duration-300 group-hover:scale-110",
+            "rounded-xl p-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3",
             iconColor.includes("sign") && "bg-sign/10",
             iconColor.includes("fax") && "bg-fax/10",
             iconColor.includes("scan") && "bg-scan/10",
-            !iconColor.includes("sign") && !iconColor.includes("fax") && !iconColor.includes("scan") && "bg-accent/10"
+            iconColor.includes("ocean") && "bg-ocean/10",
+            !iconColor.includes("sign") && !iconColor.includes("fax") && !iconColor.includes("scan") && !iconColor.includes("ocean") && "bg-accent/10"
           )}
         >
           <Icon className={cn("h-6 w-6", iconColor)} />
         </div>
       </div>
       
-      {/* Subtle gradient overlay on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+      {/* Decorative wave for ocean cards */}
+      <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-tl from-current to-transparent opacity-5 rounded-full group-hover:scale-110 transition-transform duration-500" />
     </div>
   );
 }

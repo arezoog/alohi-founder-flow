@@ -65,6 +65,12 @@ export default {
         sign: "hsl(var(--sign-plus))",
         fax: "hsl(var(--fax-plus))",
         scan: "hsl(var(--scan-plus))",
+        // Lifestyle colors
+        ocean: "hsl(var(--ocean))",
+        alpine: "hsl(var(--alpine))",
+        snow: "hsl(var(--snow))",
+        coffee: "hsl(var(--coffee))",
+        sunset: "hsl(var(--sunset))",
         // Status colors
         success: "hsl(var(--status-success))",
         warning: "hsl(var(--status-warning))",
@@ -74,6 +80,8 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        xl: "calc(var(--radius) + 4px)",
+        "2xl": "calc(var(--radius) + 8px)",
       },
       keyframes: {
         "accordion-down": {
@@ -85,7 +93,7 @@ export default {
           to: { height: "0" },
         },
         "fade-in": {
-          from: { opacity: "0", transform: "translateY(8px)" },
+          from: { opacity: "0", transform: "translateY(12px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "slide-in-right": {
@@ -96,10 +104,6 @@ export default {
           from: { opacity: "0", transform: "scale(0.95)" },
           to: { opacity: "1", transform: "scale(1)" },
         },
-        "number-count": {
-          from: { opacity: "0.5" },
-          to: { opacity: "1" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -107,7 +111,6 @@ export default {
         "fade-in": "fade-in 0.4s ease-out",
         "slide-in-right": "slide-in-right 0.3s ease-out",
         "scale-in": "scale-in 0.3s ease-out",
-        "number-count": "number-count 0.5s ease-out",
       },
       boxShadow: {
         'card': 'var(--shadow-card)',
