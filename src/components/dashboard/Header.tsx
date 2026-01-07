@@ -1,7 +1,10 @@
-import { Bell, Search, Settings } from "lucide-react";
+import { Bell, Search, Settings, LogIn, LogOut } from "lucide-react";
 import { format } from "date-fns";
 import { toZonedTime } from "date-fns-tz";
 import { MobileMenuButton } from "./Sidebar";
+import { useAuth } from "@/contexts/AuthContext";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const GENEVA_TIMEZONE = "Europe/Zurich";
 
@@ -10,6 +13,9 @@ interface HeaderProps {
 }
 
 export function Header({ onMenuClick }: HeaderProps) {
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+  
   const now = new Date();
   const genevaTime = toZonedTime(now, GENEVA_TIMEZONE);
   const hour = genevaTime.getHours();
@@ -30,6 +36,11 @@ export function Header({ onMenuClick }: HeaderProps) {
     return "Wrapping up strong 💪";
   };
 
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/');
+  };
+
   return (
     <header className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
       <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4 lg:py-6">
@@ -38,7 +49,7 @@ export function Header({ onMenuClick }: HeaderProps) {
           <MobileMenuButton onClick={onMenuClick || (() => {})} />
           <div>
             <h1 className="text-lg sm:text-xl lg:text-2xl font-display font-bold text-foreground">
-              {getGreeting()}, Ali
+              {getGreeting()}{user ? ", Ali" : ""}
             </h1>
             <div className="flex flex-col sm:flex-row sm:items-center sm:gap-3 mt-0.5 lg:mt-1">
               <p className="text-xs sm:text-sm text-muted-foreground">{formattedDate} · {formattedTime}</p>
@@ -63,13 +74,35 @@ export function Header({ onMenuClick }: HeaderProps) {
             <span className="absolute top-1.5 sm:top-2 right-1.5 sm:right-2 h-2 w-2 rounded-full bg-ocean" />
           </button>
           
-          <button className="hidden sm:block p-2.5 rounded-xl hover:bg-muted transition-colors">
+          <Link to="/settings" className="hidden sm:block p-2.5 rounded-xl hover:bg-muted transition-colors">
             <Settings className="h-5 w-5 text-muted-foreground" />
-          </button>
+          </Link>
           
-          <div className="ml-1 sm:ml-2 h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-gradient-to-br from-ocean to-primary flex items-center justify-center text-white font-display font-semibold text-xs sm:text-sm">
-            AG
-          </div>
+          {user ? (
+            <>
+              <div className="ml-1 sm:ml-2 h-8 w-8 sm:h-9 sm:w-9 rounded-full bg-gradient-to-br from-ocean to-primary flex items-center justify-center text-white font-display font-semibold text-xs sm:text-sm">
+                {user.email?.slice(0, 2).toUpperCase() || "U"}
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleSignOut}
+                className="ml-1"
+              >
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </>
+          ) : (
+            <Button
+              variant="default"
+              size="sm"
+              onClick={() => navigate('/auth')}
+              className="ml-2"
+            >
+              <LogIn className="h-4 w-4 mr-2" />
+              Sign In
+            </Button>
+          )}
         </div>
       </div>
     </header>
