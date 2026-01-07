@@ -3,8 +3,8 @@ import { toZonedTime } from "date-fns-tz";
 import { MapPin, ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import snowboardAction from "@/assets/snowboard-action.jpg";
-import surfAction from "@/assets/surf-action.jpg";
+import snowboardPowder from "@/assets/snowboard-powder.jpg";
+import surfWave from "@/assets/surf-wave.jpg";
 
 const GENEVA_TIMEZONE = "Europe/Zurich";
 
@@ -13,6 +13,8 @@ interface ScenicView {
   location: string;
   country: string;
   image: string;
+  credit: string;
+  creditUrl: string;
 }
 
 const views: ScenicView[] = [
@@ -20,13 +22,17 @@ const views: ScenicView[] = [
     id: "1",
     location: "Powder Day",
     country: "Backcountry",
-    image: snowboardAction,
+    image: snowboardPowder,
+    credit: "Unsplash",
+    creditUrl: "https://unsplash.com/photos/snowboarder-action",
   },
   {
     id: "2",
     location: "Barrel Wave",
     country: "Pipeline",
-    image: surfAction,
+    image: surfWave,
+    credit: "Unsplash",
+    creditUrl: "https://unsplash.com/photos/surfer-wave",
   },
 ];
 
@@ -93,6 +99,15 @@ export function HeroSection() {
                 <MapPin className="h-3 w-3" />
                 <span>{current.location}</span>
                 <span>· {current.country}</span>
+                <span>·</span>
+                <a 
+                  href={current.creditUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-white/80 transition-colors"
+                >
+                  📷 {current.credit}
+                </a>
               </div>
             </div>
             
