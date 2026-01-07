@@ -58,59 +58,53 @@ export function TaskList() {
     );
   };
 
-  const completedCount = tasks.filter((t) => t.completed).length;
-
   return (
     <div className="rounded-2xl bg-card border border-border shadow-card">
-      <div className="p-6 border-b border-border">
-        <div className="flex items-center justify-between">
-          <h2 className="font-display text-lg font-semibold text-foreground">
-            Today
-          </h2>
-          <span className="text-sm text-muted-foreground">
-            {completedCount}/{tasks.length}
-          </span>
-        </div>
+      <div className="p-6 border-b border-border flex items-center justify-between">
+        <h2 className="font-display text-lg font-semibold text-foreground">
+          Today
+        </h2>
+        <Sparkles className="h-4 w-4 text-ocean" />
       </div>
       
-      <div className="p-2">
+      <div className="divide-y divide-border">
         {tasks.map((task) => (
           <div
             key={task.id}
             className={cn(
-              "group flex items-center gap-4 p-4 rounded-xl transition-colors hover:bg-muted/50 cursor-pointer",
+              "group flex items-start gap-4 p-5 transition-colors hover:bg-muted/30 cursor-pointer",
               task.completed && "opacity-50"
             )}
             onClick={() => toggleTask(task.id)}
           >
-            <button className="flex-shrink-0">
+            <button className="flex-shrink-0 mt-0.5">
               {task.completed ? (
                 <CheckCircle2 className="h-5 w-5 text-success" />
               ) : (
-                <Circle className="h-5 w-5 text-border group-hover:text-primary transition-colors" />
+                <Circle className="h-5 w-5 text-border group-hover:text-ocean transition-colors" />
               )}
             </button>
             
             <div className="flex-1 min-w-0">
               <p className={cn(
-                "text-sm font-medium text-foreground",
+                "font-medium text-foreground",
                 task.completed && "line-through text-muted-foreground"
               )}>
                 {task.title}
               </p>
-              <div className="flex items-center gap-2 mt-1">
+              <div className="flex items-center gap-3 mt-1.5">
                 {task.time && (
-                  <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                    <Clock className="h-3 w-3" />
+                  <span className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                    <Clock className="h-3.5 w-3.5" />
                     {task.time}
                   </span>
                 )}
                 {task.product && (
                   <span className={cn(
-                    "text-xs px-1.5 py-0.5 rounded",
-                    task.product === "sign" && "bg-sign/10 text-sign",
-                    task.product === "fax" && "bg-fax/10 text-fax",
-                    task.product === "scan" && "bg-scan/10 text-scan"
+                    "text-xs px-2 py-0.5 rounded-md font-medium border",
+                    task.product === "sign" && "bg-sign/5 text-sign border-sign/20",
+                    task.product === "fax" && "bg-fax/5 text-fax border-fax/20",
+                    task.product === "scan" && "bg-scan/5 text-scan border-scan/20"
                   )}>
                     {task.product}.Plus
                   </span>
@@ -118,8 +112,8 @@ export function TaskList() {
               </div>
             </div>
             
-            {task.aiSuggested && (
-              <Sparkles className="h-4 w-4 text-ocean flex-shrink-0" />
+            {task.aiSuggested && !task.completed && (
+              <Sparkles className="h-4 w-4 text-ocean flex-shrink-0 mt-1" />
             )}
           </div>
         ))}
