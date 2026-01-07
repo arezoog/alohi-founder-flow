@@ -7,9 +7,7 @@ interface MetricCardProps {
   change?: string;
   changeType?: "positive" | "negative" | "neutral";
   icon: LucideIcon;
-  iconColor?: string;
-  gradient?: string;
-  className?: string;
+  iconBg?: string;
 }
 
 export function MetricCard({
@@ -18,60 +16,34 @@ export function MetricCard({
   change,
   changeType = "neutral",
   icon: Icon,
-  iconColor = "text-accent",
-  gradient,
-  className,
+  iconBg = "bg-ocean/10 text-ocean",
 }: MetricCardProps) {
   return (
-    <div
-      className={cn(
-        "group relative overflow-hidden rounded-2xl bg-card p-6 shadow-card transition-all duration-300 hover:shadow-elevated hover:-translate-y-1",
-        className
-      )}
-    >
-      {/* Subtle gradient overlay */}
-      <div className={cn(
-        "absolute inset-0 opacity-50 transition-opacity duration-300 group-hover:opacity-70",
-        gradient || "bg-gradient-to-br from-transparent to-muted/30"
-      )} />
-      
-      <div className="relative flex items-start justify-between">
-        <div className="space-y-3">
-          <p className="text-sm font-medium text-muted-foreground">{title}</p>
-          <p className="text-3xl font-display font-bold tracking-tight text-foreground">
-            {value}
-          </p>
-          {change && (
-            <p
-              className={cn(
-                "text-sm font-medium flex items-center gap-1",
-                changeType === "positive" && "text-success",
-                changeType === "negative" && "text-destructive",
-                changeType === "neutral" && "text-muted-foreground"
-              )}
-            >
-              {changeType === "positive" && "↑"}
-              {changeType === "negative" && "↓"}
-              {change}
-            </p>
-          )}
+    <div className="group p-6 rounded-2xl bg-card border border-border shadow-card hover:shadow-elevated transition-all duration-300">
+      <div className="flex items-start justify-between mb-4">
+        <div className={cn("p-3 rounded-xl", iconBg)}>
+          <Icon className="h-5 w-5" />
         </div>
-        <div
-          className={cn(
-            "rounded-xl p-3 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3",
-            iconColor.includes("sign") && "bg-sign/10",
-            iconColor.includes("fax") && "bg-fax/10",
-            iconColor.includes("scan") && "bg-scan/10",
-            iconColor.includes("ocean") && "bg-ocean/10",
-            !iconColor.includes("sign") && !iconColor.includes("fax") && !iconColor.includes("scan") && !iconColor.includes("ocean") && "bg-accent/10"
-          )}
-        >
-          <Icon className={cn("h-6 w-6", iconColor)} />
-        </div>
+        {change && (
+          <span
+            className={cn(
+              "text-xs font-medium px-2 py-1 rounded-full",
+              changeType === "positive" && "bg-success/10 text-success",
+              changeType === "negative" && "bg-destructive/10 text-destructive",
+              changeType === "neutral" && "bg-muted text-muted-foreground"
+            )}
+          >
+            {changeType === "positive" && "↑ "}
+            {changeType === "negative" && "↓ "}
+            {change}
+          </span>
+        )}
       </div>
       
-      {/* Decorative wave for ocean cards */}
-      <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-tl from-current to-transparent opacity-5 rounded-full group-hover:scale-110 transition-transform duration-500" />
+      <p className="text-3xl font-display font-bold text-foreground mb-1">
+        {value}
+      </p>
+      <p className="text-sm text-muted-foreground">{title}</p>
     </div>
   );
 }

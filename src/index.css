@@ -6,121 +6,119 @@
 
 @layer base {
   :root {
-    /* Ocean-to-Alps palette: Deep ocean blues meeting Swiss snow */
-    --background: 200 25% 98%;
-    --foreground: 210 40% 12%;
+    /* Clean ocean + alpine palette */
+    --background: 200 30% 98%;
+    --foreground: 210 25% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 40% 12%;
+    --card-foreground: 210 25% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 12%;
+    --popover-foreground: 210 25% 20%;
 
-    /* Deep ocean blue - primary */
-    --primary: 200 80% 25%;
+    /* Deep ocean teal - primary */
+    --primary: 190 60% 40%;
     --primary-foreground: 0 0% 100%;
 
-    /* Soft alpine snow */
-    --secondary: 200 20% 96%;
-    --secondary-foreground: 210 40% 12%;
+    /* Soft mountain mist */
+    --secondary: 200 25% 95%;
+    --secondary-foreground: 210 25% 25%;
 
-    /* Misty morning */
-    --muted: 200 15% 93%;
-    --muted-foreground: 200 10% 45%;
+    /* Light alpine gray */
+    --muted: 200 20% 94%;
+    --muted-foreground: 200 15% 50%;
 
-    /* Sunset coral - warmth of après-ski */
-    --accent: 16 85% 57%;
+    /* Ocean accent - soft teal */
+    --accent: 175 50% 45%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 72% 51%;
+    --destructive: 0 65% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 200 20% 90%;
-    --input: 200 20% 90%;
-    --ring: 200 80% 25%;
+    --border: 200 25% 90%;
+    --input: 200 25% 90%;
+    --ring: 190 60% 40%;
 
     --radius: 1rem;
 
-    /* Product colors */
-    --sign-plus: 155 72% 40%;
-    --fax-plus: 200 80% 50%;
-    --scan-plus: 270 60% 55%;
+    /* Product colors - nature inspired */
+    --sign-plus: 160 55% 42%;
+    --fax-plus: 200 70% 50%;
+    --scan-plus: 260 45% 55%;
 
-    /* Lifestyle colors */
-    --ocean: 195 85% 45%;
-    --alpine: 210 60% 70%;
+    /* Lifestyle colors - ocean & mountain */
+    --ocean: 190 65% 45%;
+    --ocean-light: 190 60% 85%;
+    --alpine: 200 35% 65%;
     --snow: 200 30% 98%;
-    --coffee: 25 65% 35%;
-    --sunset: 16 85% 57%;
+    --powder: 195 50% 92%;
+    --wave: 180 55% 50%;
 
     /* Status colors */
-    --status-success: 155 72% 40%;
-    --status-warning: 38 92% 50%;
-    --status-info: 200 80% 50%;
+    --status-success: 160 55% 42%;
+    --status-warning: 45 85% 55%;
+    --status-info: 200 70% 50%;
 
     /* Gradients */
-    --gradient-ocean-alps: linear-gradient(135deg, hsl(200 80% 25%) 0%, hsl(195 85% 45%) 50%, hsl(200 30% 98%) 100%);
-    --gradient-sunset: linear-gradient(135deg, hsl(16 85% 57%) 0%, hsl(35 90% 55%) 100%);
-    --gradient-coffee: linear-gradient(135deg, hsl(25 65% 35%) 0%, hsl(30 50% 45%) 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(200 25% 98%) 100%);
+    --gradient-ocean: linear-gradient(135deg, hsl(195 65% 50%) 0%, hsl(185 60% 55%) 100%);
+    --gradient-alpine: linear-gradient(135deg, hsl(200 35% 88%) 0%, hsl(195 30% 95%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.9) 100%);
 
-    /* Shadows with ocean tint */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 50, 80, 0.03);
-    --shadow-md: 0 4px 6px -1px rgba(0, 50, 80, 0.06), 0 2px 4px -2px rgba(0, 50, 80, 0.04);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 50, 80, 0.06), 0 4px 6px -4px rgba(0, 50, 80, 0.04);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 50, 80, 0.08), 0 8px 10px -6px rgba(0, 50, 80, 0.04);
-    --shadow-card: 0 2px 8px rgba(0, 50, 80, 0.04), 0 8px 24px rgba(0, 50, 80, 0.06);
-    --shadow-elevated: 0 8px 20px rgba(0, 50, 80, 0.08), 0 20px 40px rgba(0, 50, 80, 0.08);
+    /* Shadows - soft and subtle */
+    --shadow-sm: 0 1px 2px rgba(0, 60, 80, 0.02);
+    --shadow-md: 0 4px 12px rgba(0, 60, 80, 0.04);
+    --shadow-lg: 0 8px 24px rgba(0, 60, 80, 0.06);
+    --shadow-card: 0 2px 8px rgba(0, 60, 80, 0.03), 0 1px 2px rgba(0, 60, 80, 0.02);
+    --shadow-elevated: 0 8px 32px rgba(0, 60, 80, 0.08);
 
-    /* Sidebar - Deep ocean */
-    --sidebar-background: 200 80% 12%;
-    --sidebar-foreground: 200 20% 96%;
-    --sidebar-primary: 16 85% 57%;
+    /* Sidebar - light and airy */
+    --sidebar-background: 200 30% 97%;
+    --sidebar-foreground: 210 25% 30%;
+    --sidebar-primary: 190 60% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 200 60% 20%;
-    --sidebar-accent-foreground: 200 20% 96%;
-    --sidebar-border: 200 50% 18%;
-    --sidebar-ring: 16 85% 57%;
+    --sidebar-accent: 195 40% 92%;
+    --sidebar-accent-foreground: 210 25% 25%;
+    --sidebar-border: 200 25% 92%;
+    --sidebar-ring: 190 60% 40%;
   }
 
   .dark {
-    --background: 200 50% 6%;
-    --foreground: 200 20% 96%;
+    --background: 210 30% 8%;
+    --foreground: 200 20% 95%;
 
-    --card: 200 50% 9%;
-    --card-foreground: 200 20% 96%;
+    --card: 210 30% 11%;
+    --card-foreground: 200 20% 95%;
 
-    --popover: 200 50% 9%;
-    --popover-foreground: 200 20% 96%;
+    --popover: 210 30% 11%;
+    --popover-foreground: 200 20% 95%;
 
-    --primary: 195 85% 55%;
-    --primary-foreground: 200 80% 10%;
+    --primary: 185 55% 55%;
+    --primary-foreground: 210 30% 8%;
 
-    --secondary: 200 40% 15%;
-    --secondary-foreground: 200 20% 96%;
+    --secondary: 210 25% 15%;
+    --secondary-foreground: 200 20% 95%;
 
-    --muted: 200 40% 18%;
+    --muted: 210 25% 18%;
     --muted-foreground: 200 15% 60%;
 
-    --accent: 16 85% 57%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 175 50% 50%;
+    --accent-foreground: 210 30% 8%;
 
-    --destructive: 0 62% 45%;
+    --destructive: 0 55% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 200 40% 18%;
-    --input: 200 40% 18%;
-    --ring: 195 85% 55%;
+    --border: 210 25% 18%;
+    --input: 210 25% 18%;
+    --ring: 185 55% 55%;
 
-    --sidebar-background: 200 60% 5%;
-    --sidebar-foreground: 200 15% 90%;
-    --sidebar-primary: 16 85% 57%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 200 50% 12%;
-    --sidebar-accent-foreground: 200 15% 90%;
-    --sidebar-border: 200 40% 15%;
-    --sidebar-ring: 16 85% 57%;
+    --sidebar-background: 210 30% 6%;
+    --sidebar-foreground: 200 15% 85%;
+    --sidebar-primary: 185 55% 55%;
+    --sidebar-primary-foreground: 210 30% 8%;
+    --sidebar-accent: 210 25% 12%;
+    --sidebar-accent-foreground: 200 15% 85%;
+    --sidebar-border: 210 25% 15%;
+    --sidebar-ring: 185 55% 55%;
   }
 }
 
@@ -149,25 +147,17 @@
     font-family: 'Space Grotesk', system-ui, sans-serif;
   }
 
-  .gradient-ocean-alps {
-    background: var(--gradient-ocean-alps);
+  .gradient-ocean {
+    background: var(--gradient-ocean);
   }
 
-  .gradient-sunset {
-    background: var(--gradient-sunset);
-  }
-
-  .gradient-coffee {
-    background: var(--gradient-coffee);
+  .gradient-alpine {
+    background: var(--gradient-alpine);
   }
 
   .gradient-glass {
     background: var(--gradient-glass);
     backdrop-filter: blur(16px);
-  }
-
-  .gradient-card {
-    background: var(--gradient-card);
   }
 
   .shadow-card {
@@ -180,77 +170,45 @@
 
   .text-gradient-ocean {
     @apply bg-clip-text text-transparent;
-    background: linear-gradient(135deg, hsl(200 80% 25%) 0%, hsl(195 85% 45%) 100%);
+    background: var(--gradient-ocean);
   }
 
-  .text-gradient-sunset {
-    @apply bg-clip-text text-transparent;
-    background: var(--gradient-sunset);
-  }
-
-  /* Wave animation for ocean vibes */
+  /* Gentle wave animation */
   @keyframes wave {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-3px) rotate(1deg); }
-    50% { transform: translateY(0) rotate(0deg); }
-    75% { transform: translateY(3px) rotate(-1deg); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
   }
 
   .animate-wave {
-    animation: wave 4s ease-in-out infinite;
+    animation: wave 3s ease-in-out infinite;
   }
 
-  /* Smooth float animation */
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  /* Fade in animation */
+  /* Soft fade in */
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
   .animate-in {
-    animation: fadeIn 0.4s ease-out;
+    animation: fadeIn 0.5s ease-out;
   }
 
   /* Stagger children */
   .stagger-children > * {
-    animation: fadeIn 0.4s ease-out backwards;
+    animation: fadeIn 0.5s ease-out backwards;
   }
 
   .stagger-children > *:nth-child(1) { animation-delay: 0ms; }
-  .stagger-children > *:nth-child(2) { animation-delay: 50ms; }
-  .stagger-children > *:nth-child(3) { animation-delay: 100ms; }
-  .stagger-children > *:nth-child(4) { animation-delay: 150ms; }
-  .stagger-children > *:nth-child(5) { animation-delay: 200ms; }
-  .stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+  .stagger-children > *:nth-child(2) { animation-delay: 75ms; }
+  .stagger-children > *:nth-child(3) { animation-delay: 150ms; }
+  .stagger-children > *:nth-child(4) { animation-delay: 225ms; }
 
-  /* Pulse soft */
   @keyframes pulseSoft {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+    50% { opacity: 0.6; }
   }
 
   .animate-pulse-soft {
-    animation: pulseSoft 2s ease-in-out infinite;
-  }
-
-  /* Snow fall */
-  @keyframes snowfall {
-    0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-  }
-
-  .animate-snowfall {
-    animation: snowfall 10s linear infinite;
+    animation: pulseSoft 2.5s ease-in-out infinite;
   }
 }
