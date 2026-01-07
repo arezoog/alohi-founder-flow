@@ -52,13 +52,6 @@ export function HeroSection() {
   const formattedDate = format(genevaTime, "EEEE, MMMM d");
   const formattedTime = format(genevaTime, "h:mm a");
 
-  const getMotivation = () => {
-    if (hour < 10) return "Early bird catches the wave 🌊";
-    if (hour < 14) return "Flow state activated ✨";
-    if (hour < 18) return "Making moves 🚀";
-    return "Wrapping up strong 💪";
-  };
-
   return (
     <div className="relative rounded-2xl overflow-hidden mb-6">
       {/* Background Image */}
@@ -94,7 +87,7 @@ export function HeroSection() {
                 {getGreeting()}, Ali
               </h1>
               <p className="text-white/70 text-sm sm:text-base">
-                {formattedDate} · <span className="text-ocean">{getMotivation()}</span>
+                {formattedDate}
               </p>
               <div className="flex items-center gap-2 text-white/60 text-xs mt-2">
                 <MapPin className="h-3 w-3" />
