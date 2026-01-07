@@ -1,6 +1,6 @@
 # Life Dashboard
 
-A personal dashboard built for my brother to help keep track of everything in life — tasks, health, calendar, and more. Check alohi's website: https://www.alohi.com/
+A personal dashboard built for my brother to help keep track of everything in life — tasks, health, calendar, and more. Check out alohi's website: https://www.alohi.com/
 
 ## About This Project
 
