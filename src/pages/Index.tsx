@@ -32,51 +32,49 @@ const Index = () => {
       <div className="lg:pl-60 transition-all duration-300 relative z-10">
         <Header onMenuClick={() => setMobileMenuOpen(true)} />
         
-        <main className="p-4 sm:p-6 lg:p-10 max-w-7xl mx-auto">
-          {/* Mobile: Scenic view first */}
-          <div className="lg:hidden mb-6">
-            <ScenicWidget />
-          </div>
-          
-          {/* Metrics Grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6 lg:mb-8 stagger-children">
-            <MetricCard
-              title="Sign.Plus"
-              value="2,847"
-              change="12.5%"
-              changeType="positive"
-              icon={PenLine}
-              iconBg="bg-sign/10 text-sign"
-            />
-            <MetricCard
-              title="Fax.Plus"
-              value="1,234"
-              change="8.2%"
-              changeType="positive"
-              icon={Send}
-              iconBg="bg-fax/10 text-fax"
-            />
-            <MetricCard
-              title="Scan.Plus"
-              value="892K"
-              change="23.1%"
-              changeType="positive"
-              icon={ScanLine}
-              iconBg="bg-scan/10 text-scan"
-            />
-            <MetricCard
-              title="Users"
-              value="4.5M"
-              change="340K"
-              changeType="positive"
-              icon={Users}
-              iconBg="bg-ocean/10 text-ocean"
-            />
-          </div>
-
-          {/* Desktop: Top row with scenic */}
-          <div className="hidden lg:block mb-8">
-            <ScenicWidget />
+        <main className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto">
+          {/* Top row: Metrics + Scenic */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 mb-6">
+            {/* Metrics */}
+            <div className="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-4 stagger-children">
+              <MetricCard
+                title="Sign.Plus"
+                value="2,847"
+                change="12.5%"
+                changeType="positive"
+                icon={PenLine}
+                iconBg="bg-sign/10 text-sign"
+              />
+              <MetricCard
+                title="Fax.Plus"
+                value="1,234"
+                change="8.2%"
+                changeType="positive"
+                icon={Send}
+                iconBg="bg-fax/10 text-fax"
+              />
+              <MetricCard
+                title="Scan.Plus"
+                value="892K"
+                change="23.1%"
+                changeType="positive"
+                icon={ScanLine}
+                iconBg="bg-scan/10 text-scan"
+              />
+              <MetricCard
+                title="Users"
+                value="4.5M"
+                change="340K"
+                changeType="positive"
+                icon={Users}
+                iconBg="bg-ocean/10 text-ocean"
+              />
+            </div>
+            
+            {/* Scenic - next to metrics on desktop */}
+            <div className="lg:col-span-5">
+              <ScenicWidget />
+            </div>
           </div>
 
           {/* Main Grid */}
