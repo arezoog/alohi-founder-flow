@@ -3,7 +3,7 @@ import { toZonedTime } from "date-fns-tz";
 import { MapPin, ChevronLeft, ChevronRight, Heart } from "lucide-react";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import snowboardJump from "@/assets/snowboard-jump.jpg";
+import snowboardPowder from "@/assets/snowboard-powder-spray.jpg";
 import surfBarrel from "@/assets/surf-barrel.jpg";
 
 const GENEVA_TIMEZONE = "Europe/Zurich";
@@ -21,10 +21,10 @@ const views: ScenicView[] = [
   {
     id: "1",
     location: "Powder Day",
-    country: "Alps",
-    image: snowboardJump,
-    credit: "Jorg Angeli / Unsplash",
-    creditUrl: "https://unsplash.com/@jangeli",
+    country: "Backcountry",
+    image: snowboardPowder,
+    credit: "Damiano Lingauri / Unsplash",
+    creditUrl: "https://unsplash.com/@d_lingauri",
   },
   {
     id: "2",
